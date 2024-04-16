@@ -1,0 +1,47 @@
+[
+  {
+    "id": 0,
+    "chapter": 0,
+    "section": 0,
+    "subsection": 0,
+    "subsectionTitle": "",
+    "number": 0,
+    "text": ""
+  },
+  {
+    "id": 10,
+    "chapter": 1,
+    "section": 10,
+    "subsection": 10,
+    "subsectionTitle": "equivocation",
+    "number": 10,
+    "text": "The poet T.S. Eliot wrote\n\nWords strain, \nCrack and sometimes break, under the burden, \nUnder the tension, slip, slide, perish, \nDecay with imprecision, will not stay in place, \nWill not stay still. \n—Burnt Norton, 1935 "
+  },
+  {
+    "id": 20,
+    "chapter": 1,
+    "section": 10,
+    "subsection": 10,
+    "subsectionTitle": "equivocation",
+    "number": 20,
+    "text": "You may have had the confusing experience of listening to someone whose words would not 'stay in place'. This means their words come to have different meanings over time."
+  },
+  {
+    "id": 30,
+    "chapter": 1,
+    "section": 10,
+    "subsection": 10,
+    "subsectionTitle": "equivocation",
+    "number": 30,
+    "text": "A dishonest person can confuse others by deliberately using the same term or phrase in different ways. It's even possible to confuse yourself by using the same word or phrase in different ways without realizing it."
+  },
+  {
+    "id": 40,
+    "chapter": 1,
+    "section": 10,
+    "subsection": 10,
+    "subsectionTitle": "equivocation",
+    "number": 40,
+    "text": "When we use the same word in different ways in the context of an argument, this is called the fallacy of equivocation."
+  }
+]

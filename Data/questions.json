@@ -1,0 +1,42 @@
+[
+  {
+    "id": 0,
+    "chapter": 0,
+    "section": 0,
+    "subsection": 0,
+    "subsectionTitle": "",
+    "number": 0,
+    "type": "no type",
+    "text": ""
+  },
+  {
+    "id": 20,
+    "chapter": 1,
+    "section": 10,
+    "subsection": 10,
+    "subsectionTitle": "equivocation",
+    "number": 20,
+    "type": "gap fill",
+    "text": "Why don't words stay in place?"
+  },
+  {
+    "id": 30,
+    "chapter": 1,
+    "section": 10,
+    "subsection": 10,
+    "subsectionTitle": "equivocation",
+    "number": 30,
+    "type": "type in answer",
+    "text": "Why are some people dishonest?"
+  },
+  {
+    "id": 40,
+    "chapter": 1,
+    "section": 10,
+    "subsection": 10,
+    "subsectionTitle": "equivocation",
+    "number": 40,
+    "type": "gap fill",
+    "text": "What's the fallacy of equivocation?"
+  }
+]
