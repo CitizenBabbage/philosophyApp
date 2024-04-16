@@ -5,23 +5,25 @@
     "section": 0,
     "subsection": 0,
     "subsectionTitle": "",
-    "number": 0,
+    "index": 0,
     "text": ""
   },
   {
+    "id": 10,
     "chapter": 1,
     "section": 10,
     "subsection": 10,
     "subsectionTitle": "equivocation",
-    "number": 20,
+    "index": 20,
     "text": "If guns are outlawed, then anyone who owns a gun will, by definition, be an outlaw. Therefore, if guns are outlawed, only outlaws will have guns. But if only outlaws had guns, that would make outlaws more powerful than law-abiding people. We want to avoid this bad situation. Therefore, we must never outlaw guns."
   },
   {
+    "id": 20,
     "chapter": 1,
     "section": 10,
     "subsection": 10,
     "subsectionTitle": "equivocation",
-    "number": 30,
+    "index": 30,
     "text": "1. If guns are outlawed, then anyone who owns a gun will, by definition, be an outlaw. (premise/intermediate step/conclusion) \n2. Therefore, if guns are outlawed, only outlaws will have guns. (premise/intermediate step/conclusion) \n3. But if only outlaws had guns, that would make outlaws more powerful than law-abiding people. (premise/intermediate step/conclusion) \n4. We want to avoid this bad situation. (premise/intermediate step/conclusion)\n5. Therefore, we must never outlaw guns.” (premise/intermediate step/conclusion)"
   }
 ]

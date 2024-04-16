@@ -1,12 +1,15 @@
 import React from "react";
 import { View, Text } from "react-native";
-// Import your quiz question components here
 
-const ReferenceText: React.FC = () => {
+interface ReferenceTextProps {
+  refText: string; // Define the type for the 'text' prop
+}
+
+// const ReferenceText: React.FC<ReferenceTextProps> = ({}) => {
+const ReferenceText: React.FC<ReferenceTextProps> = ({ refText }) => {
   return (
     <View>
-      <Text>This is the reference text.</Text>
-      {/* Render your quiz question components here */}
+      <Text>{refText}</Text>
     </View>
   );
 };

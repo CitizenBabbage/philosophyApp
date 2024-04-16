@@ -5,7 +5,7 @@
     "section": 10,
     "subsection": 10,
     "subsectionTitle": "equivocation",
-    "number": 10,
+    "index": 10,
     "layout": [0, 10, 10]
   },
   {
@@ -14,7 +14,7 @@
     "section": 10,
     "subsection": 10,
     "subsectionTitle": "equivocation",
-    "number": 20,
+    "index": 20,
     "layout": [10, 20, 20]
   },
   {
@@ -23,7 +23,7 @@
     "section": 10,
     "subsection": 10,
     "subsectionTitle": "equivocation",
-    "number": 30,
+    "index": 30,
     "layout": [20, 30, 30]
   },
   {
@@ -32,7 +32,7 @@
     "section": 10,
     "subsection": 10,
     "subsectionTitle": "equivocation",
-    "number": 40,
+    "index": 40,
     "layout": [30, 40, 40]
   }
 ]
