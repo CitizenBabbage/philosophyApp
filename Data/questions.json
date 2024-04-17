@@ -7,7 +7,9 @@
     "subsectionTitle": "",
     "number": 0,
     "type": "no type",
-    "text": ""
+    "text": "",
+    "answer_selection": [],
+    "correct_answers": []
   },
   {
     "id": 20,
@@ -17,7 +19,9 @@
     "subsectionTitle": "equivocation",
     "number": 20,
     "type": "gap fill",
-    "text": "Why don't words stay in place?"
+    "text": "What is a premise?",
+    "answer_selection": [],
+    "correct_answers": []
   },
   {
     "id": 30,
@@ -27,7 +31,9 @@
     "subsectionTitle": "equivocation",
     "number": 30,
     "type": "type in answer",
-    "text": "Why are some people dishonest?"
+    "text": "Why are some people dishonest?",
+    "answer_selection": [],
+    "correct_answers": []
   },
   {
     "id": 40,
@@ -37,6 +43,8 @@
     "subsectionTitle": "equivocation",
     "number": 40,
     "type": "gap fill",
-    "text": "What's the fallacy of equivocation?"
+    "text": "What's the fallacy of equivocation?",
+    "answer_selection": [],
+    "correct_answers": []
   }
 ]
