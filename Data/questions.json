@@ -8,8 +8,8 @@
     "number": 0,
     "type": "no type",
     "text": "",
-    "answer_selection": [],
-    "correct_answers": []
+    "options": [],
+    "answer": []
   },
   {
     "id": 20,
@@ -19,9 +19,13 @@
     "subsectionTitle": "equivocation",
     "number": 20,
     "type": "gap fill",
-    "text": "What is a premise?",
-    "answer_selection": [],
-    "correct_answers": []
+    "text": "What is a conclusion?",
+    "options": [
+      "the starting point in an argument",
+      "the end point of an argument",
+      "an intermediate point in an argument"
+    ],
+    "answer": ["the end point of an argument"]
   },
   {
     "id": 30,
@@ -32,8 +36,8 @@
     "number": 30,
     "type": "type in answer",
     "text": "Why are some people dishonest?",
-    "answer_selection": [],
-    "correct_answers": []
+    "options": [],
+    "answer": []
   },
   {
     "id": 40,
@@ -44,7 +48,7 @@
     "number": 40,
     "type": "gap fill",
     "text": "What's the fallacy of equivocation?",
-    "answer_selection": [],
-    "correct_answers": []
+    "options": [],
+    "answer": []
   }
 ]

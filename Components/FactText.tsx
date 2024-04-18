@@ -1,15 +1,24 @@
 import React from "react";
 import { View, Text } from "react-native";
-// Import your quiz question components here
+import factDB from "../Data/facts.json";
 
 interface FactTextProps {
-  factText: string;
+  factID: number;
 }
 
-const FactText: React.FC<FactTextProps> = ({ factText }) => {
+function getText(idNumber: number): string | undefined {
+  const factObject = factDB.find((item) => item.id === idNumber);
+  if (factObject && factObject.text) {
+    return factObject.text;
+  }
+  return "Error: No text for fact space.";
+}
+
+const FactText: React.FC<FactTextProps> = ({ factID }) => {
+  const text = getText(factID);
   return (
     <View>
-      <Text>{factText}</Text>
+      <Text>{text}</Text>
     </View>
   );
 };

@@ -56,39 +56,37 @@ const Page: React.FC = () => {
     correct_answers: string[];
   }
 
-  function getText(
+  function getID(
     pageIdLocal: number,
     pageDBLocal: Page[],
     dBLocal: Reference[] | Fact[] | Question[]
-  ): string | undefined {
+  ): number {
     const layoutNumber =
       dBLocal === referenceDB ? 0 : dBLocal === factDB ? 1 : 2;
     const pageLocal = pageDBLocal.find((item) => item.id === pageIdLocal);
     if (pageLocal && pageLocal.layout.length > 0) {
-      let referenceId = pageLocal.layout[layoutNumber];
-      const refObject = dBLocal.find((item) => item.id === referenceId);
-      if (refObject && refObject.text) {
-        return refObject.text;
-      }
-      return "boo";
-    } else return "yah";
+      return pageLocal.layout[layoutNumber];
+    } else return -1;
   }
 
-  let refText = getText(pageId, pageDB, referenceDB);
-  refText = refText ? refText : "Undefined refText at Page.tsx line 51";
+  //   let refText = getText(pageId, pageDB, referenceDB);
+  //   refText = refText ? refText : "Undefined refText at Page.tsx line 51";
+  let refID = getID(pageId, pageDB, referenceDB);
 
-  let factText = getText(pageId, pageDB, factDB);
-  factText = factText ? factText : "Undefined factText at Page.tsx line 54";
+  //   let factText = getText(pageId, pageDB, factDB);
+  //   factText = factText ? factText : "Undefined factText at Page.tsx line 54";
+  let factID = getID(pageId, pageDB, factDB);
 
-  let qText = getText(pageId, pageDB, qDB);
-  qText = qText ? qText : "Undefined qText at Page.tsx line 57";
+  //   let qText = getText(pageId, pageDB, qDB);
+  //   qText = qText ? qText : "Undefined qText at Page.tsx line 57";
+  let qID = getID(pageId, pageDB, qDB);
 
   // <ReferenceText />
   return (
     <View>
-      <ReferenceText refText={refText} />
-      <FactText factText={factText} />
-      <Question qText={qText} />
+      <ReferenceText refID={refID} />
+      <FactText factID={factID} />
+      <Question qID={qID} />
       {/* Render your quiz question components here */}
     </View>
   );
