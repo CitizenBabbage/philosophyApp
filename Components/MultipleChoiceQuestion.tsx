@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
+import { Options } from "./Page";
 
 interface QuestionProps {
-  question: string | undefined;
-  options: string[] | undefined;
+  question: string;
+  options: Options;
   answer: string[] | undefined;
   onAnswerSelected: (selection: string) => void;
 }
@@ -25,18 +26,19 @@ const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
   return (
     <View style={styles.container}>
       <Text style={styles.questionText}>{question}</Text>
-      {options.map((answer, index) => (
-        <TouchableOpacity
-          key={index}
-          style={[
-            styles.answerButton,
-            answer === selectedAnswer ? styles.selected : null,
-          ]}
-          onPress={() => handleAnswerPress(answer)}
-        >
-          <Text style={styles.answerText}>{answer}</Text>
-        </TouchableOpacity>
-      ))}
+      {answer &&
+        answer.map((answ, index) => (
+          <TouchableOpacity
+            key={index}
+            style={[
+              styles.answerButton,
+              answ === selectedAnswer ? styles.selected : null,
+            ]}
+            onPress={() => handleAnswerPress(answ)}
+          >
+            <Text style={styles.answerText}>{answ}</Text>
+          </TouchableOpacity>
+        ))}
     </View>
   );
 };

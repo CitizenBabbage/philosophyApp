@@ -1,93 +1,135 @@
-import React from "react";
+import SQLite from "react-native-sqlite-storage";
+import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import ReferenceText from "./ReferenceText";
 import FactText from "./FactText";
 import Question from "./Question";
-import pageDB from "../Data/pages.json";
-import referenceDB from "../Data/references.json";
-import factDB from "../Data/facts.json";
-import qDB from "../Data/questions.json";
 
-const pageId = 20;
+import {
+  dbConnection,
+  queryExample,
+  queryFact,
+  queryQuestion,
+  queryPage,
+  closeDatabase,
+} from "../Data/database";
 
-// Import your quiz question components here
+console.log(
+  "+++++++++++++page.tsx refreshed+++++++++++++" + new Date().toString()
+);
+//child of Quiz.tsx
 
-const Page: React.FC = () => {
-  interface Page {
-    id: number;
-    chapter: number;
-    section: number;
-    subsection: number;
-    subsectionTitle: string;
-    index: number;
-    layout: number[];
-  }
+const dummyExample = { id: -1, content: "this is just a dummy example" };
+const dummyQuestion = {
+  id: -1,
+  question_text: "this is just a dummy question",
+  options: { a: "dummy a", b: "dummy b", c: "dummy c" },
+  answer: ["dummy a"],
+  type: "multiple choice",
+};
+const dummyFact = { id: -1, content: "this is just a dummy fact" };
 
-  interface Reference {
-    id: number;
-    chapter: number;
-    section: number;
-    subsection: number;
-    subsectionTitle: string;
-    index: number;
-    text: string;
-  }
+interface PageProps {
+  pageNum: number;
+}
 
-  interface Fact {
-    id: number;
-    chapter: number;
-    section: number;
-    subsection: number;
-    subsectionTitle: string;
-    number: number;
-    text: string;
-  }
+interface PageType {
+  id: number;
+  chapter: number;
+  section: number;
+  subsection: number;
+  subsection_index: number;
+  example_id: number;
+  fact_id: number;
+  question_id: number;
+  next_page_id: number;
+}
 
-  interface Question {
-    id: number;
-    chapter: number;
-    section: number;
-    subsection: number;
-    subsectionTitle: string;
-    number: number;
-    type: string;
-    text: string;
-    answer_selection: string[];
-    correct_answers: string[];
-  }
+interface ExampleType {
+  id: number;
+  content: string;
+}
 
-  function getID(
-    pageIdLocal: number,
-    pageDBLocal: Page[],
-    dBLocal: Reference[] | Fact[] | Question[]
-  ): number {
-    const layoutNumber =
-      dBLocal === referenceDB ? 0 : dBLocal === factDB ? 1 : 2;
-    const pageLocal = pageDBLocal.find((item) => item.id === pageIdLocal);
-    if (pageLocal && pageLocal.layout.length > 0) {
-      return pageLocal.layout[layoutNumber];
-    } else return -1;
-  }
+interface FactType {
+  id: number;
+  content: string;
+}
 
-  //   let refText = getText(pageId, pageDB, referenceDB);
-  //   refText = refText ? refText : "Undefined refText at Page.tsx line 51";
-  let refID = getID(pageId, pageDB, referenceDB);
+export interface Options {
+  a: string;
+  b: string;
+  c: string;
+}
 
-  //   let factText = getText(pageId, pageDB, factDB);
-  //   factText = factText ? factText : "Undefined factText at Page.tsx line 54";
-  let factID = getID(pageId, pageDB, factDB);
+export interface QuestionType {
+  id: number;
+  question_text: string;
+  options: Options;
+  answer: string[];
+  type: string | null;
+}
 
-  //   let qText = getText(pageId, pageDB, qDB);
-  //   qText = qText ? qText : "Undefined qText at Page.tsx line 57";
-  let qID = getID(pageId, pageDB, qDB);
+const Page: React.FC<PageProps> = ({ pageNum }) => {
+  const [example, setExample] = useState<ExampleType>(dummyExample);
+  const [fact, setFact] = useState<FactType>(dummyFact);
+  const [question, setQuestion] = useState<QuestionType>(dummyQuestion);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // <ReferenceText />
+  useEffect(() => {
+    console.log(`1. example is ${example}`);
+  }, [example]);
+
+  useEffect(() => {
+    console.log(`2. fact is ${fact}`);
+  }, [fact]);
+
+  useEffect(() => {
+    console.log(`3. question is ${question}`);
+  }, [question]);
+
+  useEffect(() => {
+    let db: SQLite.SQLiteDatabase;
+    const fetchData = async () => {
+      try {
+        // db = await dbConnection();
+        db = await dbConnection().catch((err) => {
+          console.error("Failed to connect:", err);
+          throw err;
+        });
+        console.log("beep 1");
+        const pageResults = await queryPage(db, pageNum);
+        console.log("beep 2");
+        const currentPage = pageResults.find((p: PageType) => p.id === pageNum);
+        console.log("beep 3");
+        console.log("current page is", currentPage);
+        if (currentPage) {
+          setExample(await queryExample(db, currentPage.example_id));
+          setFact(await queryFact(db, currentPage.fact_id));
+          setQuestion(await queryQuestion(db, currentPage.question_id));
+        }
+      } catch (error) {
+        console.error(
+          `Database access error: example is ${example}, fact is ${fact}, question is ${question}`,
+          error
+        );
+      } finally {
+        setIsLoading(false);
+        if (db) {
+          closeDatabase(db);
+        }
+      }
+    };
+
+    fetchData();
+  }, [pageNum]);
+
+  if (isLoading) return <Text>Loading...</Text>;
+
   return (
     <View>
-      <ReferenceText refID={refID} />
-      <FactText factID={factID} />
-      <Question qID={qID} />
-      {/* Render your quiz question components here */}
+      {example && <ReferenceText content={example.content} />}
+      {fact && <FactText content={fact.content} />}
+      {question && <Question question={question} />}
     </View>
   );
 };
