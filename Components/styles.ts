@@ -15,6 +15,14 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
     },
+    exampleText: {
+        marginBottom: 20,
+        fontSize: 16,
+    },
+    factText: {
+        marginBottom: 20,
+        fontSize: 16,
+    },
     answerButton: {
         marginBottom: 10,
         padding: 10,

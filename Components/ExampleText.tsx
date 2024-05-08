@@ -1,9 +1,8 @@
 import React from "react";
 import { View, Text } from "react-native";
-import factDB from "../Data/facts.json";
 import { styles } from "./styles";
 
-interface FactTextProps {
+interface ExampleTextProps {
   // factID: number;
   content: string | undefined;
 }
@@ -16,13 +15,13 @@ interface FactTextProps {
 //   return "Error: No text for fact space.";
 // }
 
-const FactText: React.FC<FactTextProps> = ({ content }) => {
+const ExampleText: React.FC<ExampleTextProps> = ({ content }) => {
   // const text = getText(factID);
   return (
     <View style={styles.container}>
-      <Text style={styles.factText}>{content}</Text>
+      <Text style={styles.exampleText}>{content}</Text>
     </View>
   );
 };
 
-export default FactText;
+export default ExampleText;

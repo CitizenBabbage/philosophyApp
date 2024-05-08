@@ -4,9 +4,9 @@ import { styles } from "./styles";
 import { Options } from "./Page";
 
 interface QuestionProps {
-  question: string;
-  options: Options;
-  answer: string[] | undefined;
+  question: string | undefined;
+  options: string | undefined;
+  answer: string | undefined;
   onAnswerSelected: (selection: string) => void;
 }
 
@@ -16,18 +16,30 @@ const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
   answer,
   onAnswerSelected,
 }) => {
-  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  console.log("MultipleChoiceQuestion reached ");
+  const [selectedAnswer, setSelectedAnswer] = useState<string>("");
 
   const handleAnswerPress = (selection: string) => {
     setSelectedAnswer(selection);
     onAnswerSelected(selection);
   };
+  console.log("question in multiple choice question is ", question);
+  console.log("answer in multiple choice question is ", answer);
+  console.log("options in multiple choice question is ", options);
+  console.log(JSON.stringify(options)); // logs the array
+  // options && console.log(Array.isArray(JSON.parse(options))); // should log true
+  // console.log(typeof options.map); // should log 'function'
+  // options.map((option) => console.log(option)); // test .map()
+  let multipleOptions: string[] | undefined;
+  if (options) {
+    multipleOptions = JSON.parse(options);
+  }
 
   return (
     <View style={styles.container}>
       <Text style={styles.questionText}>{question}</Text>
-      {answer &&
-        answer.map((answ, index) => (
+      {multipleOptions &&
+        multipleOptions.map((answ, index) => (
           <TouchableOpacity
             key={index}
             style={[

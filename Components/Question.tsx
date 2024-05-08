@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import questionDB from "../Data/questions.json";
 import MultipleChoiceQuestion from "./MultipleChoiceQuestion";
-import { QuestionType } from "./Page";
+import { QuestionType } from "./DBComponent6";
 
 interface QuestionTextProps {
   question: QuestionType;
@@ -13,11 +13,6 @@ interface QuestionTextProps {
 // }
 
 const Question: React.FC<QuestionTextProps> = ({ question }) => {
-  // const quobject: Question | string | undefined = getQuobject(qID);
-  // const question: string = quobject ? quobject.text : "No quobject";
-  // const options: string[] | undefined = quobject ? quobject.options : undefined;
-  // const answer: string[] | undefined = quobject ? quobject.answer : undefined;
-
   const handleAnswerSelected = (selected: string) => {
     if (question.answer && question.answer.includes(selected)) {
       alert("Correct!");
@@ -26,6 +21,7 @@ const Question: React.FC<QuestionTextProps> = ({ question }) => {
     }
   };
 
+  console.log("question.type is ", question.type);
   return question.type === "multiple choice" ? (
     <View>
       <MultipleChoiceQuestion

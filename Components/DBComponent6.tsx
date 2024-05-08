@@ -2,8 +2,42 @@ import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView } from "react-native";
 import * as SQLite from "expo-sqlite";
 import * as FileSystem from "expo-file-system";
+import Question from "./Question";
+import FactText from "./FactText";
+import ExampleText from "./ExampleText";
+import { SafeAreaView } from "react-native";
 
 const pagesid = 10;
+
+interface PageType {
+  id: number;
+  chapter: number;
+  section: number;
+  subsection: number;
+  subsection_index: number;
+  example_id: number;
+  fact_id: number;
+  question_id: number;
+  next_page_id: number;
+}
+
+interface ExampleType {
+  id?: number;
+  content?: string;
+}
+
+interface FactType {
+  id?: number;
+  content?: string;
+}
+
+export interface QuestionType {
+  id?: number;
+  question_text?: string;
+  options?: string;
+  answer?: string;
+  type?: string | null;
+}
 
 const executeSqlAsync = (
   db: SQLite.SQLiteDatabase,
@@ -29,8 +63,9 @@ const executeSqlAsync = (
 
 export const DBComponent6 = () => {
   const [data, setData] = useState([]);
-  const [example, setExample] = useState([]);
-  const [fact, setFact] = useState([]);
+  const [example, setExample] = useState<ExampleType>({});
+  const [fact, setFact] = useState<FactType>({});
+  const [question, setQuestion] = useState<QuestionType>({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,18 +85,26 @@ export const DBComponent6 = () => {
             db,
             `SELECT * FROM examples WHERE id = ${exampleId};`
           );
-          setExample(examplesResult.rows._array);
+          setExample(examplesResult.rows._array[0]); // examplesResult.rows._array is an array containing a single example object
 
           const factId = pagesResult.rows._array[0].fact_id;
           const factResult = await executeSqlAsync(
             db,
             `SELECT * FROM facts WHERE id = ${factId};`
           );
-          setFact(factResult.rows._array);
+          setFact(factResult.rows._array[0]);
+
+          const qId = pagesResult.rows._array[0].question_id;
+          const qResult = await executeSqlAsync(
+            db,
+            `SELECT * FROM questions WHERE id = ${qId};`
+          );
+          //console.log("qResult is", JSON.stringify(qResult));
+          setQuestion(qResult.rows._array[0]);
         } else {
           console.log("No pages found for the given ID");
-          setExample([]);
-          setFact([]);
+          setExample({});
+          setFact({});
         }
       } catch (error) {
         console.error("Database operation failed", error);
@@ -72,22 +115,32 @@ export const DBComponent6 = () => {
   }, []);
 
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Popeye</Text>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {/* <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}> */}
+      {/* <Text>Popeye</Text>
       <Text>Olive</Text>
-      <Text>Bluto</Text>
+      <Text>Bluto</Text> */}
       <ScrollView style={{ width: "100%" }}>
-        {example.map((item, index) => (
-          <Text key={index} style={{ margin: 10 }}>
-            {item.content}
-          </Text>
-        ))}
-        {fact.map((item, index) => (
-          <Text key={index} style={{ margin: 10 }}>
-            {item.content}
-          </Text>
-        ))}
+        {/* <Text style={{ margin: 10 }}>{example.content}</Text>
+        <Text style={{ margin: 10 }}>{fact.content}</Text> */}
+        {/* <Question
+          id={question.id}
+          question_text={question.question_text}
+          options={question.options}
+          answer={question.answer}
+          type={question.type}
+        /> */}
+        <ExampleText content={example.content} />
+        <FactText content={fact.content} />
+        <Question question={question} />
       </ScrollView>
-    </View>
+      {/* </View> */}
+    </SafeAreaView>
   );
 };
