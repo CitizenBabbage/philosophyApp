@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, ActivityIndicator } from "react-native";
 import UIshell from "./Components/UIshell";
 import { StatusBar } from "expo-status-bar";
 import { copyDatabase } from "./Data/database";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true); // State to track loading status
@@ -28,19 +29,24 @@ export default function App() {
   // Display loading indicator while database is being prepared
   if (isLoading) {
     return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#0000ff" />
-        <Text>Loading Database...</Text>
-      </View>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#0000ff" />
+          <Text>Loading Database...</Text>
+        </View>
+      </GestureHandlerRootView>
     );
   }
 
   // Render the main UI after the database setup is complete
   return (
-    <View style={styles.container}>
-      <UIshell />
-      <StatusBar style="auto" />
-    </View>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <UIshell />
+        {/* <StatusBar style="auto" /> */}
+        <StatusBar />
+      </View>
+    </GestureHandlerRootView>
   );
 }
 

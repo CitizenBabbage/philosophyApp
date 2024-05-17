@@ -61,7 +61,7 @@ const executeSqlAsync = (
   });
 };
 
-export const DBComponent6 = () => {
+export const PageGetterSQL = () => {
   const [data, setData] = useState([]);
   const [example, setExample] = useState<ExampleType>({});
   const [fact, setFact] = useState<FactType>({});

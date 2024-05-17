@@ -7,37 +7,11 @@ import DBComponent2 from "./DBComponent2";
 import { DBComponent3 } from "./DBComponent3";
 import { DBComponent4 } from "./DBComponent4";
 import { DBComponent5 } from "./DBcomponent5";
-import { DBComponent6 } from "./DBComponent6";
+import PageHandler from "./PageHandler";
 
 //child of UIshell.tsx
 
-interface Options {
-  a: string;
-  b: string;
-  c: string;
-  d: string;
-  e: string;
-  f: string;
-  g: string;
-}
-
-interface Question {
-  id: number;
-  question_text: string;
-  options: Options;
-  answer: string;
-  type: string | null;
-}
-
-interface FactTextProps {
-  question: Question;
-}
-
-interface QuizProps {
-  page: number;
-}
-
-const Quiz: React.FC<QuizProps> = ({ page }) => {
+const Quiz: React.FC = () => {
   return (
     <View>
       {/* <DatabaseComponent /> */}
@@ -46,7 +20,8 @@ const Quiz: React.FC<QuizProps> = ({ page }) => {
       {/* <DBComponent3 /> */}
       {/* <DBComponent4 /> */}
       {/* <DBComponent5 /> */}
-      <DBComponent6 />
+      {/* <DBComponent6 /> */}
+      <PageHandler />
     </View>
   );
 };

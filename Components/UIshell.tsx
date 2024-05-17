@@ -9,7 +9,7 @@ const dummyPage = 10;
 const UIshell: React.FC = () => {
   return (
     <View>
-      <Quiz page={dummyPage} />
+      <Quiz />
     </View>
   );
 };

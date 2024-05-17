@@ -1,0 +1,128 @@
+[
+  {
+    "id": 10000,
+    "chapter": "arguments 1",
+    "facts": [
+      "An argument is a piece of persuasive reasoning.",
+      "For example, in the USA many years ago a certain bumper sticker became popular. It said 'if guns are outlawed, only outlaws will have guns'. This is an abbreviated argument."
+    ],
+    "question": "Do you think the argument is in favor of, or against, making it illegal to own guns?",
+    "options": [
+      "in favor of making it illegal to own guns",
+      "against making it illegal to own guns"
+    ],
+    "answer": "against making it illegal to own guns",
+    "question_type": "multiple choice"
+  },
+  {
+    "id": 10010,
+    "chapter": "arguments 1",
+    "facts": [
+      "Unfortunately, most people decide whether an argument is good or bad by looking at the conclusion. If they agree with the conclusion, they will find the argument agreeable. If they disagree with the conclusion, they will dislike the argument for it.",
+      "This is the wrong way to decide whether an argument is good or bad."
+    ],
+    "question": "Why is this the wrong way to decide whether an argument is good or bad?",
+    "options": [
+      "It leaves us with no way to decide when an argument is good.",
+      "It leaves us with no way to decide when an argument is bad.",
+      "It is merely a way for people to reinforce their prior prejudices."
+    ],
+    "answer": "It is merely a way for people to reinforce their prior prejudices.",
+    "question_type": "multiple choice"
+  },
+  {
+    "id": 10020,
+    "chapter": "arguments 1",
+    "facts": [
+      "An argument can be broken down into sentences.",
+      "Some sentences in an argument are simply asserted, with no supporting reasons given. These sentences are called premises. If the argument is to be persuasive, the premises must seem to the hearer to require no supporting argument.",
+      "We use the word inferences for the logical transitions from earlier sentences to later ones."
+    ],
+    "question": "Which of these do you think is true?",
+    "options": [
+      "premises are the starting points of arguments.",
+      "premises are the end points of arguments.",
+      "premises are the transitions from one part of an argument to the next."
+    ],
+    "answer": "premises are the starting points of arguments.",
+    "question_type": "multiple choice"
+  },
+  {
+    "id": 10030,
+    "chapter": "arguments 1",
+    "facts": [],
+    "question": "Which of these do you think is true?",
+    "options": [
+      "inferences are the starting points of arguments.",
+      "inferences are the end points of arguments.",
+      "inferences are the transitions from one part of an argument to the next."
+    ],
+    "answer": "inferences are the transitions from one part of an argument to the next.",
+    "question_type": "multiple choice"
+  },
+  {
+    "id": 10040,
+    "chapter": "arguments 1",
+    "facts": [
+      "As a tool of persuasion, an argument is effective if it proceeds from premises the hearer accepts via inferences that are difficult to deny to the arguer’s desired conclusion.",
+      "To persuade the hearer, the argument must start with premises the hearer already accepts."
+    ],
+    "question": "Which of the following do you think sounds right?",
+    "options": [
+      "As a tool of persuasion, an argument is effective if it proceeds from premises the hearer accepts via inferences that are difficult to deny to the arguer’s desired conclusion.",
+      "As a tool of persuasion, an argument is effective if it proceeds to a conclusion the hearer accepts via inferences that are difficult to deny from the arguer’s desired premises."
+    ],
+    "answer": "As a tool of persuasion, an argument is effective if it proceeds from premises the hearer accepts via inferences that are difficult to deny to the arguer’s desired conclusion.",
+    "question_type": "multiple choice"
+  },
+  {
+    "id": 10050,
+    "chapter": "arguments 1",
+    "facts": [
+      "When evaluating an argument, which of these approaches would be better?"
+    ],
+    "question": "When evaluating an argument, which of these approaches would be better?",
+    "options": [
+      "To let yourself be influenced by your pre-existing approval or disapproval of the conclusion.",
+      "To set aside any prejudices you might have for or against the conclusion."
+    ],
+    "answer": "To set aside any prejudices you might have for or against the conclusion.",
+    "question_type": "multiple choice"
+  },
+  {
+    "id": 10060,
+    "chapter": "arguments 1",
+    "facts": [
+      "The starting points of an argument are called premises. These are the things the arguer takes for granted."
+    ],
+    "question": "The starting points of an argument are called ________.",
+    "options": [],
+    "answer": "premises",
+    "question_type": "gap fill"
+  },
+  {
+    "id": 10070,
+    "chapter": "arguments 1",
+    "facts": [
+      "The end of the argument is called the conclusion. This is what the arguer is trying to use the premises to establish."
+    ],
+    "question": "The end of the argument is called the _________.",
+    "options": [],
+    "answer": "conclusion",
+    "question_type": "gap fill"
+  },
+  {
+    "id": 10080,
+    "chapter": "arguments 1",
+    "facts": [
+      "In the argument 'If guns are outlawed, only outlaws will have guns,' the conclusion is not clearly written, but is left implicit."
+    ],
+    "question": "What is the conclusion?",
+    "options": [
+      "It would be wise to outlaw guns.",
+      "It would be unwise to outlaw guns."
+    ],
+    "answer": "It would be unwise to outlaw guns.",
+    "question_type": "multiple choice"
+  }
+]
