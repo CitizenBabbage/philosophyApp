@@ -5,7 +5,7 @@ import { Options } from "./Page";
 
 interface QuestionProps {
   question: string | undefined;
-  options: string | undefined;
+  options: string[] | undefined;
   answer: string | undefined;
   onAnswerSelected: (selection: string) => void;
 }
@@ -31,15 +31,15 @@ const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
   // console.log(typeof options.map); // should log 'function'
   // options.map((option) => console.log(option)); // test .map()
   let multipleOptions: string[] | undefined;
-  if (options) {
-    multipleOptions = JSON.parse(options);
-  }
+  // if (options) {
+  //   multipleOptions = JSON.parse(options);
+  // }
 
   return (
     <View style={styles.container}>
       <Text style={styles.questionText}>{question}</Text>
-      {multipleOptions &&
-        multipleOptions.map((answ, index) => (
+      {options &&
+        options.map((answ, index) => (
           <TouchableOpacity
             key={index}
             style={[

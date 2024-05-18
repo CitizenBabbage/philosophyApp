@@ -3,31 +3,32 @@ import { View, Text } from "react-native";
 import questionDB from "../Data/questions.json";
 import MultipleChoiceQuestion from "./MultipleChoiceQuestion";
 import { QuestionType } from "./PageGetterSQL";
+import { PageType } from "./PageHandler";
 
 interface QuestionTextProps {
-  question: QuestionType;
+  page: PageType;
 }
 
 // function getQuobject(idNumber: number): Question | undefined {
 //   return questionDB.find((item) => item.id === idNumber);
 // }
 
-const Question: React.FC<QuestionTextProps> = ({ question }) => {
+const Question: React.FC<QuestionTextProps> = ({ page }) => {
   const handleAnswerSelected = (selected: string) => {
-    if (question.answer && question.answer.includes(selected)) {
+    if (page.answer && page.answer === selected) {
       alert("Correct!");
     } else {
       alert("Wrong answer. Try again!");
     }
   };
 
-  console.log("question.type is ", question.type);
-  return question.type === "multiple choice" ? (
+  console.log("question.type is ", page.question_type);
+  return page.question_type === "multiple choice" ? (
     <View>
       <MultipleChoiceQuestion
-        question={question.question_text}
-        options={question.options}
-        answer={question.answer}
+        question={page.question}
+        options={page.options}
+        answer={page.answer}
         onAnswerSelected={handleAnswerSelected}
       />
     </View>
