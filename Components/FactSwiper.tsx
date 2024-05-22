@@ -9,6 +9,7 @@ import {
 import Question from "./Question";
 // import { styles } from "./styles";
 import FactText from "./FactText";
+import Content from "./Content";
 
 console.log(
   "+++++++++++++FactSwiper.tsx refreshed+++++++++++++" + new Date().toString()
@@ -46,11 +47,13 @@ const FactSwiper: React.FC<FactSwiperProps> = ({
       const direction = translationX > 0 ? "right" : "left";
       let newTranslateXValue = 0;
       let newTranslateXStart = 0;
-      if (direction === "right" && index > 0) {
+      if (direction === "right") {
+        // && index > 0
         newTranslateXValue = windowWidth; // Assuming windowWidth is the width of your screen
         newTranslateXStart = -windowWidth;
         //setIndex(index - 1);
-      } else if (direction === "left" && index < factList.length - 1) {
+      } else if (direction === "left") {
+        //&& index < factList.length - 1
         newTranslateXValue = -windowWidth;
         newTranslateXStart = windowWidth;
         //setIndex(index + 1);
@@ -94,12 +97,13 @@ const FactSwiper: React.FC<FactSwiperProps> = ({
           transform: [{ translateX: translateX }],
         }}
       >
-        {index >= factList.length ? (
+        <Content page={page} historyUpdater={historyUpdater} index={index} />
+        {/* {index >= factList.length ? (
           // <FactText content={factList[index]} />
           <Question page={page} historyUpdater={historyUpdater} />
         ) : (
           <FactText content={factList[index]} />
-        )}
+        )} */}
       </Animated.View>
     </PanGestureHandler>
   );
