@@ -2,21 +2,20 @@ import React from "react";
 import { View, Text } from "react-native";
 import questionDB from "../Data/questions.json";
 import MultipleChoiceQuestion from "./MultipleChoiceQuestion";
+import GapFillQuestion from "./GapFillQuestion";
 import { QuestionType } from "./PageGetterSQL";
 import { PageType } from "./PageHandler";
 
 interface QuestionTextProps {
   page: PageType;
+  historyUpdater: (direction: number) => void;
 }
 
-// function getQuobject(idNumber: number): Question | undefined {
-//   return questionDB.find((item) => item.id === idNumber);
-// }
-
-const Question: React.FC<QuestionTextProps> = ({ page }) => {
+const Question: React.FC<QuestionTextProps> = ({ page, historyUpdater }) => {
   const handleAnswerSelected = (selected: string) => {
     if (page.answer && page.answer === selected) {
       alert("Correct!");
+      historyUpdater(1);
     } else {
       alert("Wrong answer. Try again!");
     }
@@ -34,7 +33,10 @@ const Question: React.FC<QuestionTextProps> = ({ page }) => {
     </View>
   ) : (
     <View>
-      <Text />
+      <GapFillQuestion
+        handleAnswerSelected={handleAnswerSelected}
+        question={page.question}
+      />
     </View>
   );
 };

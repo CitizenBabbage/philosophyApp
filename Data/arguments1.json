@@ -1,5 +1,16 @@
 [
   {
+    "id": 9000,
+    "chapter": "arguments 1",
+    "facts": [
+      "The starting points of an argument are called premises. These are the things the arguer takes for granted."
+    ],
+    "question": "The starting points of an argument are called ________.",
+    "options": [],
+    "answer": "premises",
+    "question_type": "gap fill"
+  },
+  {
     "id": 10000,
     "chapter": "arguments 1",
     "facts": [
@@ -18,7 +29,7 @@
     "id": 10010,
     "chapter": "arguments 1",
     "facts": [
-      "Unfortunately, most people decide whether an argument is good or bad by looking at the conclusion. If they agree with the conclusion, they will find the argument agreeable. If they disagree with the conclusion, they will dislike the argument for it.",
+      "Unfortunately, most people decide whether an argument is good or bad by looking at the conclusion. If they agree with the conclusion, they will find the argument agreeable. If they disagree with the conclusion, they will dislike any argument that supports it.",
       "This is the wrong way to decide whether an argument is good or bad."
     ],
     "question": "Why is this the wrong way to decide whether an argument is good or bad?",
@@ -36,7 +47,7 @@
     "facts": [
       "An argument can be broken down into sentences.",
       "Some sentences in an argument are simply asserted, with no supporting reasons given. These sentences are called premises. If the argument is to be persuasive, the premises must seem to the hearer to require no supporting argument.",
-      "We use the word inferences for the logical transitions from earlier sentences to later ones."
+      "We use the word 'inferences' for the logical transitions from earlier sentences to later ones."
     ],
     "question": "Which of these do you think is true?",
     "options": [
@@ -78,9 +89,7 @@
   {
     "id": 10050,
     "chapter": "arguments 1",
-    "facts": [
-      "When evaluating an argument, which of these approaches would be better?"
-    ],
+    "facts": [],
     "question": "When evaluating an argument, which of these approaches would be better?",
     "options": [
       "To let yourself be influenced by your pre-existing approval or disapproval of the conclusion.",

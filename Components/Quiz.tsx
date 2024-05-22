@@ -14,13 +14,6 @@ import PageHandler from "./PageHandler";
 const Quiz: React.FC = () => {
   return (
     <View>
-      {/* <DatabaseComponent /> */}
-      {/* <DBComponent2 /> */}
-      {/* <Page pageNum={page} /> */}
-      {/* <DBComponent3 /> */}
-      {/* <DBComponent4 /> */}
-      {/* <DBComponent5 /> */}
-      {/* <DBComponent6 /> */}
       <PageHandler />
     </View>
   );

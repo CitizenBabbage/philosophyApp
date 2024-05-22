@@ -20,20 +20,6 @@ const dummyFactList = [
   "This is the wrong way to decide whether an argument is good or bad.",
 ];
 
-// "id": 10000,
-//     "chapter": "arguments 1",
-//     "facts": [
-//       "An argument is a piece of persuasive reasoning.",
-//       "For example, in the USA many years ago a certain bumper sticker became popular. It said 'if guns are outlawed, only outlaws will have guns'. This is an abbreviated argument."
-//     ],
-//     "question": "Do you think the argument is in favor of, or against, making it illegal to own guns?",
-//     "options": [
-//       "in favor of making it illegal to own guns",
-//       "against making it illegal to own guns"
-//     ],
-//     "answer": "against making it illegal to own guns",
-//     "question_type": "multiple choice"
-
 export interface PageType {
   id: number;
   chapter: string;
@@ -45,7 +31,9 @@ export interface PageType {
 }
 
 const PageHandler: React.FC = () => {
-  const [pageId, setPageId] = useState<number>(10000);
+  const [pageId, setPageId] = useState<number | undefined>(
+    db.find((item) => item.id)?.id
+  );
 
   const [page, setPage] = useState<PageType | undefined>(
     db.find((obj) => obj.id === pageId)
@@ -57,19 +45,31 @@ const PageHandler: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  function updatePageId(num: number) {
+  const [index, setIndex] = useState(0);
+
+  // determines next/previous page from database
+  // maintains array that logs page position relative to predecessors
+  // takes 1 (to advance and push latest page to list)
+  // or -1 (to go back and pop latest page from list) as input
+  function updateHistory(num: number) {
     let page;
     let newRecord = pageRecord;
     if (num === 1) {
       newRecord.push(pageId);
       setPageRecord(newRecord);
       page = db.find((obj) => obj.id > pageId);
-      page && setPageId(page.id);
+      if (page) {
+        setPageId(page.id);
+        setIndex(0);
+      }
     } else {
       page = db.find((obj) => obj.id === newRecord[newRecord.length - 1]);
       newRecord.pop();
       setPageRecord(newRecord);
-      page && setPageId(page.id);
+      if (page) {
+        setPageId(page.id);
+        setIndex(page.facts.length);
+      }
     }
     if (page) console.log(`new page number is ${page.id}`);
     else console.log(`Error: page out of range.`);
@@ -79,12 +79,19 @@ const PageHandler: React.FC = () => {
     setPage(db.find((obj) => obj.id === pageId));
   }, [pageId]);
 
-  console.log("page id is", page.id);
-  return (
-    <View>
-      <FactSwiper page={page} pageUpdater={updatePageId} />
-    </View>
-  );
+  page && console.log("page id is", page.id);
+  if (page)
+    return (
+      <View>
+        <FactSwiper
+          page={page}
+          historyUpdater={updateHistory}
+          setIndex={setIndex}
+          index={index}
+        />
+      </View>
+    );
+  else console.log("Error: no page found");
 };
 
 export default PageHandler;

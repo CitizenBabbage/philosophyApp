@@ -7,7 +7,8 @@ import {
   State,
 } from "react-native-gesture-handler";
 import Question from "./Question";
-// import styles from "./styles";
+// import { styles } from "./styles";
+import FactText from "./FactText";
 
 console.log(
   "+++++++++++++FactSwiper.tsx refreshed+++++++++++++" + new Date().toString()
@@ -18,11 +19,18 @@ const windowWidth = Dimensions.get("window").width;
 
 export interface FactSwiperProps {
   page: PageType;
-  pageUpdater: (direction: number) => void;
+  historyUpdater: (direction: number) => void;
+  setIndex: React.Dispatch<React.SetStateAction<number>>;
+  index: number;
 }
 
-const FactSwiper: React.FC<FactSwiperProps> = ({ page, pageUpdater }) => {
-  const [index, setIndex] = useState(0);
+const FactSwiper: React.FC<FactSwiperProps> = ({
+  page,
+  historyUpdater,
+  setIndex,
+  index,
+}) => {
+  //const [index, setIndex] = useState(0);
   const translateX = useRef(new Animated.Value(0)).current;
   const factList = page.facts;
   //   const data = ["Element 1", "Element 2", "Element 3", "Element 4"];
@@ -41,17 +49,11 @@ const FactSwiper: React.FC<FactSwiperProps> = ({ page, pageUpdater }) => {
       if (direction === "right" && index > 0) {
         newTranslateXValue = windowWidth; // Assuming windowWidth is the width of your screen
         newTranslateXStart = -windowWidth;
-        console.log(
-          `direction of swipe is right and index is ${index}, so decrementing by 1 `
-        );
-        setIndex(index - 1);
+        //setIndex(index - 1);
       } else if (direction === "left" && index < factList.length - 1) {
         newTranslateXValue = -windowWidth;
         newTranslateXStart = windowWidth;
-        console.log(
-          `direction of swipe is left and index is ${index}, so incrementing by 1 `
-        );
-        setIndex(index + 1);
+        //setIndex(index + 1);
       }
       // Animate the element sliding off
       Animated.timing(translateX, {
@@ -65,21 +67,9 @@ const FactSwiper: React.FC<FactSwiperProps> = ({ page, pageUpdater }) => {
           setIndex(index + 1);
         } else if (direction === "right") {
           // && index <= 0
-          pageUpdater(-1);
+          historyUpdater(-1);
         }
-        // else if (direction === "left") {
-        //   // && index >= data.length - 1}
-        //   pageUpdater(1);
-        // }
-        // Immediately set translateX to opposite side
         translateX.setValue(newTranslateXStart);
-
-        // // Animate sliding into view from the opposite side
-        // Animated.timing(translateX, {
-        //   toValue: 0, // Back to original position in view
-        //   duration: 300,
-        //   useNativeDriver: true,
-        // }).start();
       });
     }
   };
@@ -104,14 +94,12 @@ const FactSwiper: React.FC<FactSwiperProps> = ({ page, pageUpdater }) => {
           transform: [{ translateX: translateX }],
         }}
       >
-        {/* <Text style={styles.text}>{data[index]}</Text> */}
         {index >= factList.length ? (
-          <Question page={page} />
+          // <FactText content={factList[index]} />
+          <Question page={page} historyUpdater={historyUpdater} />
         ) : (
-          //   <Text>{page.question}</Text>
-          <Text>{factList[index]}</Text>
+          <FactText content={factList[index]} />
         )}
-        {/* <Text>{factList[index]}</Text> */}
       </Animated.View>
     </PanGestureHandler>
   );
