@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
-import { Options } from "./Page";
+import { Options } from "./archive/Page";
 
 interface QuestionProps {
   question: string | undefined;
@@ -30,7 +30,7 @@ const MultipleChoiceQuestion: React.FC<QuestionProps> = ({
   // options && console.log(Array.isArray(JSON.parse(options))); // should log true
   // console.log(typeof options.map); // should log 'function'
   // options.map((option) => console.log(option)); // test .map()
-  let multipleOptions: string[] | undefined;
+  // let multipleOptions: string[] | undefined;
   // if (options) {
   //   multipleOptions = JSON.parse(options);
   // }

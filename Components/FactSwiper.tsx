@@ -6,7 +6,7 @@ import {
   PanGestureHandlerStateChangeEvent,
   State,
 } from "react-native-gesture-handler";
-import Question from "./Question";
+import Question from "./archive/Question";
 // import { styles } from "./styles";
 import FactText from "./FactText";
 import Content from "./Content";
@@ -23,6 +23,8 @@ export interface FactSwiperProps {
   historyUpdater: (direction: number) => void;
   setIndex: React.Dispatch<React.SetStateAction<number>>;
   index: number;
+  answer: string;
+  setAnswer: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const FactSwiper: React.FC<FactSwiperProps> = ({
@@ -30,8 +32,11 @@ const FactSwiper: React.FC<FactSwiperProps> = ({
   historyUpdater,
   setIndex,
   index,
+  answer,
+  setAnswer,
 }) => {
   //const [index, setIndex] = useState(0);
+
   const translateX = useRef(new Animated.Value(0)).current;
   const factList = page.facts;
   //   const data = ["Element 1", "Element 2", "Element 3", "Element 4"];
@@ -64,18 +69,27 @@ const FactSwiper: React.FC<FactSwiperProps> = ({
         duration: 300,
         useNativeDriver: true,
       }).start(() => {
-        if (direction === "right" && index > 0) {
-          setIndex(index - 1);
-        } else if (direction === "left") {
-          setIndex(index + 1);
-        } else if (direction === "right") {
-          // && index <= 0
-          historyUpdater(-1);
-        }
+        indexHandler(direction, index);
         translateX.setValue(newTranslateXStart);
       });
     }
   };
+
+  function indexHandler(direction: string, index: number) {
+    if (direction === "right" && index > 0) {
+      setIndex(index - 1);
+    } else if (direction === "right") {
+      // && index <= 0
+      historyUpdater(-1);
+    } else if (direction === "left" && answer === "correct") {
+      historyUpdater(1);
+    } else if (direction === "left" && answer === "incorrect") {
+      historyUpdater(0);
+    } else if (direction === "left") {
+      // && answer !== "incorrect"
+      setIndex(index + 1);
+    }
+  }
 
   useEffect(() => {
     // Animate sliding into view from the opposite side
@@ -84,7 +98,7 @@ const FactSwiper: React.FC<FactSwiperProps> = ({
       duration: 300,
       useNativeDriver: true,
     }).start();
-  }, [index]);
+  }, [index, answer]);
 
   console.log("index is", index);
   return (
@@ -97,7 +111,13 @@ const FactSwiper: React.FC<FactSwiperProps> = ({
           transform: [{ translateX: translateX }],
         }}
       >
-        <Content page={page} historyUpdater={historyUpdater} index={index} />
+        <Content
+          page={page}
+          historyUpdater={historyUpdater}
+          index={index}
+          answer={answer}
+          setAnswer={setAnswer}
+        />
         {/* {index >= factList.length ? (
           // <FactText content={factList[index]} />
           <Question page={page} historyUpdater={historyUpdater} />

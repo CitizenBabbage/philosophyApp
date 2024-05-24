@@ -28,12 +28,16 @@ export const styles = StyleSheet.create({
         shadowRadius: 3,
         elevation: 5,
         width: '100%', // Use the full width available
+        borderWidth: 2, // Set the width of the border
+    borderColor: 'red',
     },
     gapFillQuestionText: {
         marginBottom: 20,
         fontWeight: 'bold',
         fontSize: 16,
         flexShrink: 1, // Allows text to shrink to fit on the line
+        borderWidth: 2, // Set the width of the border
+    borderColor: 'blue',
       },
       input: {
         width: '80%', // Or whatever width fits your design

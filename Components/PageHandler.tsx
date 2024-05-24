@@ -1,9 +1,9 @@
 import SQLite from "react-native-sqlite-storage";
 import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
-import ReferenceText from "./ReferenceText";
+import ReferenceText from "./archive/ReferenceText";
 import FactText from "./FactText";
-import Question from "./Question";
+import Question from "./archive/Question";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import FactSwiper from "./FactSwiper";
 import db from "../Data/arguments1.json";
@@ -47,14 +47,16 @@ const PageHandler: React.FC = () => {
 
   const [index, setIndex] = useState(0);
 
+  const [answer, setAnswer] = useState("");
+
   // determines next/previous page from database
   // maintains array that logs page position relative to predecessors
   // takes 1 (to advance and push latest page to list)
   // or -1 (to go back and pop latest page from list) as input
-  function updateHistory(num: number) {
+  function historyUpdater(num: number) {
     let page;
     let newRecord = pageRecord;
-    if (num === 1) {
+    if (num === 1 && pageId) {
       newRecord.push(pageId);
       setPageRecord(newRecord);
       page = db.find((obj) => obj.id > pageId);
@@ -62,13 +64,20 @@ const PageHandler: React.FC = () => {
         setPageId(page.id);
         setIndex(0);
       }
-    } else {
+    } else if (num === -1) {
       page = db.find((obj) => obj.id === newRecord[newRecord.length - 1]);
       newRecord.pop();
       setPageRecord(newRecord);
       if (page) {
         setPageId(page.id);
         setIndex(page.facts.length);
+      }
+    } else {
+      page = db.find((obj) => obj.id === pageId);
+      if (page) {
+        setPageId(page.id);
+        setIndex(page.facts.length + 1);
+        setAnswer("none");
       }
     }
     if (page) console.log(`new page number is ${page.id}`);
@@ -77,6 +86,7 @@ const PageHandler: React.FC = () => {
 
   useEffect(() => {
     setPage(db.find((obj) => obj.id === pageId));
+    setAnswer("");
   }, [pageId]);
 
   page && console.log("page id is", page.id);
@@ -85,9 +95,11 @@ const PageHandler: React.FC = () => {
       <View>
         <FactSwiper
           page={page}
-          historyUpdater={updateHistory}
+          historyUpdater={historyUpdater}
           setIndex={setIndex}
           index={index}
+          answer={answer}
+          setAnswer={setAnswer}
         />
       </View>
     );

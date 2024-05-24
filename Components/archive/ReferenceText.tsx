@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
-import referenceDB from "../Data/references.json";
+import referenceDB from "../../Data/references.json";
 
 interface ReferenceTextProps {
   content: string; // Define the type for the 'text' prop

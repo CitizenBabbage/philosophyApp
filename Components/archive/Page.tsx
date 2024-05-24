@@ -2,17 +2,8 @@ import SQLite from "react-native-sqlite-storage";
 import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import ReferenceText from "./ReferenceText";
-import FactText from "./FactText";
+import FactText from "../FactText";
 import Question from "./Question";
-
-import {
-  dbConnection,
-  queryExample,
-  queryFact,
-  queryQuestion,
-  queryPage,
-  closeDatabase,
-} from "../Data/database";
 
 console.log(
   "+++++++++++++page.tsx refreshed+++++++++++++" + new Date().toString()

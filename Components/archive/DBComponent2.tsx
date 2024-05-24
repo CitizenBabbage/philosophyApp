@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import SQLite, { SQLiteDatabase } from "react-native-sqlite-storage";
-import { openDatabase } from "../Data/database";
+import { openDatabase } from "../../Data/database";
 
 // const DBComponent2: React.FC = () => {
 //   const [content, setContent] = useState<string>("Loading...");

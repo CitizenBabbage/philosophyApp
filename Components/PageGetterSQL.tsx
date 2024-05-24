@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView } from "react-native";
 import * as SQLite from "expo-sqlite";
 import * as FileSystem from "expo-file-system";
-import Question from "./Question";
+import Question from "./archive/Question";
 import FactText from "./FactText";
-import ExampleText from "./ExampleText";
+import ExampleText from "./archive/ExampleText";
 import { SafeAreaView } from "react-native";
 
 const pagesid = 10;

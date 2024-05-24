@@ -14,40 +14,16 @@ const GapFillQuestion: React.FC<GapFillQuestionProps> = ({
   question,
 }) => {
   const [userAnswer, setUserAnswer] = useState("");
-  // const [firstHalf, setFirstHalf] = useState("xxx");
-  // const [secondHalf, setSecondHalf] = useState("yyy");
-
-  // function getQuestionParts(gapFillText: string) {
-  //   let phase = 0;
-  //   let firstIndex = 0,
-  //     secondIndex = gapFillText.length - 1;
-  //   for (let i = 0; i < gapFillText.length; i++) {
-  //     if (phase === 0 && gapFillText[i] === "_") {
-  //       firstIndex = i;
-  //       phase = 1;
-  //     } else if (phase === 1 && gapFillText[i] !== "_") {
-  //       secondIndex = i;
-  //       break;
-  //     } else {
-  //     }
-  //   }
-  //   return [firstIndex, secondIndex];
-  // }
-
-  // useEffect(() => {
-  //   const indices = getQuestionParts(question);
-  //   const firstIndex = indices ? indices[0] : 5;
-  //   const part1 = question.slice(0, firstIndex);
-  //   const part2 = question.slice(indices ? indices[1] : 5);
-  //   setFirstHalf(part1);
-  //   setSecondHalf(question.slice(indices ? indices[1] : question.length));
-  // }, [question]);
 
   const checkAnswer = () => {
     handleAnswerSelected(userAnswer.trim().toLowerCase());
   };
-  // console.log("firstHalf is", firstHalf);
+  console.log("rendering gap fill");
   return (
+    // <View>
+    //   <Text>boo boo</Text>
+    // </View>
+
     <View style={styles.gapFillContainer}>
       <Text style={styles.gapFillQuestionText}>{question}</Text>
       <TextInput

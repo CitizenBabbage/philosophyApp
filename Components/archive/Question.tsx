@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
-import questionDB from "../Data/questions.json";
-import MultipleChoiceQuestion from "./MultipleChoiceQuestion";
-import GapFillQuestion from "./GapFillQuestion";
-import { QuestionType } from "./PageGetterSQL";
-import { PageType } from "./PageHandler";
+import questionDB from "../../Data/questions.json";
+import MultipleChoiceQuestion from "../MultipleChoiceQuestion";
+import GapFillQuestion from "../GapFillQuestion";
+import { QuestionType } from "../PageGetterSQL";
+import { PageType } from "../PageHandler";
 
 interface QuestionTextProps {
   page: PageType;
